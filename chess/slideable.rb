@@ -1,8 +1,8 @@
 require_relative "piece"
 
 module Slideable
+    attr_reader :moves
 
-    private
 
     # row - X stays the same and Y changes (+1 or -1)
     # col - Y stays the same and X changes (+1 or -1)
@@ -12,7 +12,7 @@ module Slideable
     # SW +1, -1, or NE -1, +1
     DIAGONAL_DIRS = [[1, 1], [-1, -1],[1, -1], [-1, 1]].freeze
 
-    public
+    
 
     def horizontal_dirs
         HORIZONTAL_DIRS
@@ -26,12 +26,12 @@ module Slideable
         possible_moves = []
         move_dirs.each do |dir|
             dx, dy = dir
-            possible_moves << self.grow_unblocked_moves(dx, dy)
+            possible_moves += self.grow_unblocked_moves(dx, dy)
         end
         possible_moves
     end
 
-    private
+    # private
 
     def move_dirs
         raise NotImplementedError
@@ -42,7 +42,7 @@ module Slideable
         current_position = self.position
         cx, cy = current_position
 
-        until !(board[[(dx + cx), (dy + cy)]].nil? && (dx + cx).between?(0..7) && (dy + cy).between?(0..7))
+        until !(self.board[[(dx + cx), (dy + cy)]].empty? && (dx + cx).between?(0,7) && (dy + cy).between?(0,7))
             new_pos = [(dx + cx), (dy + cy)]
             new_moves << new_pos
             cx, cy = new_pos
