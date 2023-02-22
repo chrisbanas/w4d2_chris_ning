@@ -13,7 +13,7 @@ class Board
         @board[row][col]
     end
 
-    def []=(pos,piece)
+    def []=(pos, piece)
         row, col = pos
         @board[row][col] = piece
     end
@@ -27,7 +27,7 @@ class Board
         end
     end
 
-  
+
 
 
     def move_piece(start_pos, end_pos)
@@ -36,8 +36,8 @@ class Board
         end
         x, y = start_pos
         i, j = end_pos
-        @board[i][j] = @board[x][y]
-        @board[x][j] = nil
+        self[end_pos] = self[start_pos]
+        self[start_pos] = nil
     end
 
 
@@ -52,6 +52,18 @@ class Board
         end
         arr
     end
-                
+
+
+end
+
+if $PROGRAM_NAME == __FILE__
+
+    b = Board.new
+    b.fill_board
+
+    b.board
+    p b.display
+    b.move_piece([0,0], [2,0])
+    p b.display
 
 end
