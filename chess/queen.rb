@@ -3,10 +3,11 @@ require_relative "piece"
 
 
 
-class Queen
+class Queen < Piece
     include Slideable
-    def initialize
-        @symbol = :Q
+
+    def symbol
+        '♛'.colorize(color)
     end
 
     def move_dirs

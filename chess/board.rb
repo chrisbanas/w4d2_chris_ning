@@ -46,7 +46,7 @@ class Board
         @board.each do |row|
             subarr = []
             row.each do |ele|
-                ele.nil? ? subarr << "_"  : subarr << ele.color
+                ele.nil? ? subarr << ""  : subarr << ele.color
             end
             arr << subarr
         end
@@ -64,6 +64,9 @@ if $PROGRAM_NAME == __FILE__
     b.board
     p b.display
     b.move_piece([0,0], [2,0])
+    puts
     p b.display
+
+    p r = Rook.new(:white, b, [0,1])
 
 end
