@@ -1,17 +1,17 @@
-require_relative "slideable"
+require_relative "stepable"
 require_relative "piece"
 
 
 
 class Knight < Piece
-    include Slideable
+    include Stepable
 
     def symbol
         '♞'.colorize(color)
     end
 
-    def move_dirs
-       
+    def move_diffs
+        knight_dirs
     end
 
 

@@ -1,18 +1,20 @@
 require_relative "piece"
 
+
+
 module Slideable
     attr_reader :moves
 
 
     # row - X stays the same and Y changes (+1 or -1)
     # col - Y stays the same and X changes (+1 or -1)
-    HORIZONTAL_DIRS = [[0, -1], [-1, 0], [1, 0], [0, 1]].freeze
+    HORIZONTAL_DIRS = [[0, -1], [-1, 0], [1, 0], [0, 1]]
 
     # NW +1, +1 or SE -1, -1
     # SW +1, -1, or NE -1, +1
-    DIAGONAL_DIRS = [[1, 1], [-1, -1],[1, -1], [-1, 1]].freeze
+    DIAGONAL_DIRS = [[1, 1], [-1, -1],[1, -1], [-1, 1]]
 
-    
+
 
     def horizontal_dirs
         HORIZONTAL_DIRS
@@ -42,9 +44,14 @@ module Slideable
         current_position = self.position
         cx, cy = current_position
 
-        until !(self.board[[(dx + cx), (dy + cy)]].empty? && (dx + cx).between?(0,7) && (dy + cy).between?(0,7))
+
+        until !((dx + cx).between?(0,7) && (dy + cy).between?(0,7) && (self.board[[(dx + cx), (dy + cy)]].empty? || self.board[[(dx + cx), (dy + cy)]].color != self.color))
             new_pos = [(dx + cx), (dy + cy)]
             new_moves << new_pos
+            if self.board[[(dx + cx), (dy + cy)]].color == :blue
+            elsif self.board[[(dx + cx), (dy + cy)]].color != self.color
+                break
+            end
             cx, cy = new_pos
         end
 

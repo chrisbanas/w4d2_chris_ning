@@ -20,7 +20,7 @@ class Board
 
     def fill_board
         (0..7).each do |i|
-            @board[1][i] = Pawn.new(:black, self, [0, i])
+            @board[1][i] = Pawn.new(:black, self, [1, i])
             @board[6][i] = Pawn.new(:white, self, [6, i])
         end
         @board[0][0] = Rook.new(:black, self, [0, 0])
@@ -39,8 +39,8 @@ class Board
         @board[7][7] = Rook.new(:white, self, [7, 7])
         @board[7][6] = Knight.new(:white, self, [7, 6])
         @board[7][5] = Bishop.new(:white, self, [7, 5])
-       
-    
+
+
     end
 
 
@@ -69,12 +69,12 @@ class Board
         end
         arr
     end
-    
+
     def print_board
         display.each {|row| puts row.join(" ")}
     end
 
-    
+
 
 
 end
@@ -84,20 +84,30 @@ if $PROGRAM_NAME == __FILE__
     b = Board.new
     b.fill_board
 
-    b.board
+    # b.board
     b.display
     b.move_piece([0,0], [2,0])
-    b.move_piece([2,0], [3,4])
-    
+    b.move_piece([0,3], [3,3])
+    b.move_piece([6,6], [2,6])
+    b.move_piece([6,5], [2,5])
+    # b.move_piece([2,0], [3,4])
+
     b.print_board
 
-    p b[[3,0]].symbol
+    #  p b[[6,1]].moves
+     p b[[1, 6]].moves
 
     # p b[[2,0]].moves
+    # puts
+    # p b[[0,1]].moves
+    # puts
+    # p b[[0,4]].moves
+    # puts
+    # p b[[3,3]].moves
     # # p b[[2,0]].move_dirs
 
-    
 
 
-   
+
+
 end
