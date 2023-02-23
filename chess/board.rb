@@ -70,44 +70,12 @@ class Board
         arr
     end
 
-    def print_board
-        display.each {|row| puts row.join(" ")}
-    end
+    # def print_board
+    #     display.each {|row| puts row.join(" ")}
+    # end
 
 
 
 
 end
 
-if $PROGRAM_NAME == __FILE__
-
-    b = Board.new
-    b.fill_board
-
-    # b.board
-    b.display
-    b.move_piece([0,0], [2,0])
-    b.move_piece([0,3], [3,3])
-    b.move_piece([6,6], [2,6])
-    b.move_piece([6,5], [2,5])
-    # b.move_piece([2,0], [3,4])
-
-    b.print_board
-
-    #  p b[[6,1]].moves
-     p b[[1, 6]].moves
-
-    # p b[[2,0]].moves
-    # puts
-    # p b[[0,1]].moves
-    # puts
-    # p b[[0,4]].moves
-    # puts
-    # p b[[3,3]].moves
-    # # p b[[2,0]].move_dirs
-
-
-
-
-
-end
